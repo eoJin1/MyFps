@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2699925001785584995}
   - component: {fileID: 482135225489720056}
-  - component: {fileID: 1467876724638813455}
   m_Layer: 9
   m_Name: Healmatic500
   m_TagString: Untagged
@@ -45,8 +44,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 0b666b32bc52b394cac0e1ce0c7e1ae3, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
@@ -131,28 +130,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &1467876724638813455
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3234742015143470754}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: f28e486b2dd16c74fb63525e9fb874eb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3696439805872951809
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +339,7 @@ Transform:
   - {fileID: 3696439805872983615}
   - {fileID: 3696439805872983613}
   - {fileID: 3696439805872983603}
+  - {fileID: 191961619966393867}
   m_Father: {fileID: 3696439805872983597}
   m_LocalEulerAnglesHint: {x: 0.89291525, y: 170.77373, z: -1.5611774}
 --- !u!1 &3696439805872951815
@@ -2719,3 +2697,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3696439805872983941}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9190230827609342258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191961619966393867}
+  m_Layer: 9
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &191961619966393867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9190230827609342258}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0, y: 0.084, z: -0.222}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3696439805872983589}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}

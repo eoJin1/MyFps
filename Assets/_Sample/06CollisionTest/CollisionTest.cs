@@ -25,7 +25,7 @@ namespace MySample
 
         private void OnCollisionExit(Collision collision)
         {
-            Debug.Log($"OnCollisionEnter: {collision.gameObject.name}");
+            Debug.Log($"OnCollisionExit: {collision.gameObject.name}");
             //왼쪽으로 힘(200f)
             MoveObejct moveObejct = collision.gameObject.GetComponent<MoveObejct>();
             if (moveObejct)

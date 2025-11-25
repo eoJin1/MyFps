@@ -14,7 +14,7 @@ namespace MySample
             MoveObejct moveObejct = other.GetComponent<MoveObejct>();
             if (moveObejct)
             {
-                moveObejct.MoveRight();
+                moveObejct.MoveRigth();
                 moveObejct.ChangeMoveColor();
             }
         }
@@ -31,7 +31,7 @@ namespace MySample
             MoveObejct moveObejct = other.GetComponent<MoveObejct>();
             if (moveObejct)
             {
-                moveObejct.MoveRight();
+                moveObejct.MoveRigth();
                 moveObejct.ResetMoveColor();
             }
         }

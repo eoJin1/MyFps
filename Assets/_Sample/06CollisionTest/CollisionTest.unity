@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePower: 5
-  redmaterial: {fileID: 2100000, guid: 8e884c84171172d4ea6f1e6406101a5f, type: 2}
+  redMaterial: {fileID: 2100000, guid: 0e8a764376fa7c248a5ea75faae09dad, type: 2}
 --- !u!54 &1872722327
 Rigidbody:
   m_ObjectHideFlags: 0
