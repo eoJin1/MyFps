@@ -3,7 +3,7 @@ using static Unity.Burst.Intrinsics.X86;
 
 namespace MyFps
 {
-    public class CTwoDoorTrigger : MonoBehaviour
+    public class DSpawnPointTrigger : MonoBehaviour
     {
         #region Variables
         //참조: 충돌체
@@ -16,7 +16,7 @@ namespace MyFps
         public AudioSource bgm01;
         public AudioSource bgm02;
 
-        public GameObject robot;
+        public GameObject spawnPoint;
         #endregion
 
         #region Unity Event Method
@@ -42,7 +42,7 @@ namespace MyFps
             bgm02.Play();
 
             door.Activate();
-            robot.SetActive(true);
+            spawnPoint.SetActive(true);
 
         }
         #endregion

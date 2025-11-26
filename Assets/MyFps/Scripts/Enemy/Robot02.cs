@@ -1,9 +1,8 @@
 using UnityEngine;
-
 namespace MyFps
 {
     //로봇 상태 정의
-    public enum RobotState
+    public enum Robot02State
     {
         R_Idle,
         R_Walk,
@@ -15,7 +14,7 @@ namespace MyFps
     /// 로봇을 관리하는 클래스
     /// 애니메이션, 체력, 이동
     /// </summary>
-    public class Robot : MonoBehaviour, IDamageable
+    public class Robot02 : MonoBehaviour, IDamageable
     {
         #region Variables
         //참조
@@ -55,13 +54,7 @@ namespace MyFps
         private float attackDamage = 5f;
 
         //리워드
-        [SerializeField]
-        private int rewardGold = 0;
-        [SerializeField]
-        private float rewardExp = 0f;
-        //private Item rewardItem;
         public GameObject rewardItemPrefab;
-
 
         //애니메이션 파라미터
         private const string EnemyState = "EnemyState";
@@ -94,10 +87,10 @@ namespace MyFps
             //상태 구현
             switch (robotState)
             {
-                //3초후에 걷기로 상태 전환
+                //걷기로 상태 전환
                 case RobotState.R_Idle:
                     countdown += Time.deltaTime;
-                    if(countdown >= idleTimer)
+                    if (countdown >= idleTimer)
                     {
                         //타이머 기능
                         SetState(RobotState.R_Walk);
@@ -123,18 +116,9 @@ namespace MyFps
 
                 //2초마다 데미지를 5씩 준다, 플레이어와의 거리가 1.5가 넘어가면 걷기 상태로 전환
                 case RobotState.R_Attack:
-                    /*countdown += Time.deltaTime;
-                    if (countdown >= attackTimer)
-                    {
-                        //타이머 기능
-                        Attack();
-
-                        //타이머 초기화
-                        countdown = 0f;
-                    }*/
 
                     //플레이어와의 거리가 attackRange(2)가 넘어가면 걷기 상태로 전환
-                    if(distance > attackRange)
+                    if (distance > attackRange)
                     {
                         SetState(RobotState.R_Walk);
                     }
@@ -164,9 +148,9 @@ namespace MyFps
             animator.SetInteger(EnemyState, (int)robotState);
 
             //데스 킬 처리
-            if(robotState == RobotState.R_Death)
+            if (robotState == RobotState.R_Death)
             {
-                Destroy(gameObject, 6f);
+                Destroy(gameObject, 4f);
             }
         }
 
@@ -188,13 +172,8 @@ namespace MyFps
         {
             isDeath = true;
 
-            //리워드 처리
-            //AddGold(rewardGold);
-            //AddExp(rewardExp);
-            //AddInventory(rewardItemPrefab);
-
             //또는 필드에 아이템 떨구기
-            if(rewardItemPrefab != null)
+            if (rewardItemPrefab != null)
             {
                 Instantiate(rewardItemPrefab, this.transform.position + new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity);
             }
@@ -206,19 +185,13 @@ namespace MyFps
         //공격
         public void Attack()
         {
-            //Debug.Log($"플레이어에게 데미지 {attackDamage}를 준다");
-            /*PlayerHealth playerHealth = thePlayer.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(attackDamage);
-            }*/
             IDamageable damageable = thePlayer.GetComponent<IDamageable>();
             if (damageable != null)
             {
                 damageable.TakeDamage(attackDamage);
             }
-
-
+            //플레이어에게 데미지를 준 적은 킬한다
+            Die();
         }
         #endregion
     }

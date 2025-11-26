@@ -27,10 +27,10 @@ namespace MyFps
         public GameObject actionUI;
         public TextMeshProUGUI actionText;
 
+        private InteractiveUI interactiveUI;
+
         [SerializeField]
         protected string action = "Do Action";
-
-        //인터랙티브 액션
         #endregion
 
         #region Unity Event Method
@@ -38,6 +38,23 @@ namespace MyFps
         {
             //참조
             collider = GetComponent<BoxCollider>();
+
+            //Action UI가 null이면 Find 게임오브젝트로 참조 찾기
+            /*
+            if(extraCross == null)
+            {
+                extraCross = GameObject.Find("ExtraCross");
+                actionUI = GameObject.Find("ActionUI");
+                actionText = GameObject.Find("ActionText").GetComponent<TextMeshProUGUI>();
+            }
+            */
+            /*
+            if(extraCross == null)
+            {
+                //interactiveUI = GameObject.Find("GameHUD").GetComponent<InteractiveUI>();
+                interactiveUI = FindFirstObjectByType<InteractiveUI>();
+            }
+            */
         }
 
         protected virtual void OnMouseOver()
@@ -74,6 +91,12 @@ namespace MyFps
         #region Custom Method
         protected virtual void ShowActionUI()
         {
+            if (extraCross ==  null)
+            {
+                interactiveUI.ShowActionUI(action);
+                return;
+            }
+
             extraCross.SetActive(true);
             actionUI.SetActive(true);
             actionText.text = action;
@@ -81,6 +104,11 @@ namespace MyFps
 
         protected virtual void HideActionUI()
         {
+            if (extraCross == null)
+            {
+                interactiveUI.HideActionUI();
+                return;
+            }
             extraCross.SetActive(false);
             actionUI.SetActive(false);
             actionText.text = "";

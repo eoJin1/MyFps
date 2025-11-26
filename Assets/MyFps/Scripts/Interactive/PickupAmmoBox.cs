@@ -5,9 +5,9 @@ namespace MyFps
     /// <summary>
     /// AmmoBox 아이템 획득하기
     /// </summary>
-    public class PickupAmmoBox : Interactive
+    public class PickupAmmoBox : PickupItem
     {
-        #region Variablse
+        #region Variables
         [SerializeField]
         private int giveAmmo = 7;   //ammo 지급 갯수
         #endregion

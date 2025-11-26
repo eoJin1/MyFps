@@ -70,7 +70,14 @@ MonoBehaviour:
   animator: {fileID: 4895199926299601095}
   robotState: 0
   maxHealth: 20
-  thePlayer: {fileID: 0}
+  idleTimer: 2
+  moveSpeed: 5
+  attackRange: 2
+  attackTimer: 2
+  attackDamage: 5
+  rewardGold: 0
+  rewardExp: 0
+  rewardItemPrefab: {fileID: 4773545806657865508, guid: ed06c0be835a85b4fb741c3b2b829294, type: 3}
 --- !u!1001 &4522069017424830513
 PrefabInstance:
   m_ObjectHideFlags: 0

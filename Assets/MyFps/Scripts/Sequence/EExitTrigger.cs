@@ -1,22 +1,24 @@
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86;
-
+using System.Collections;
 namespace MyFps
 {
-    public class CTwoDoorTrigger : MonoBehaviour
+
+    public class EExitTrigger : MonoBehaviour
     {
         #region Variables
-        //참조: 충돌체
         private BoxCollider collider;
 
         //시퀀스
         public Door door;
 
         //사운드
-        public AudioSource bgm01;
         public AudioSource bgm02;
 
-        public GameObject robot;
+        //씬 이동
+        public SceneFader fader;
+        [SerializeField]
+        private string loadToScene = "NextScene";
+
         #endregion
 
         #region Unity Event Method
@@ -37,14 +39,21 @@ namespace MyFps
 
         #region Custom Method
         private void SequencePlay()
+        //IEnumerator SequencePlay()
         {
-            bgm01.Stop();
-            bgm02.Play();
-
+            //문열기
             door.Activate();
-            robot.SetActive(true);
+            //배경음 끄기
+            bgm02.Stop();
+            //씬 종료시 구현 내용
+            //.......
 
+            //yield return new WaitForSeconds(1f);
+
+            //fader.FadeTo(loadToScene);
+            Debug.Log($"Goto {loadToScene}");
         }
+
         #endregion
     }
 }
