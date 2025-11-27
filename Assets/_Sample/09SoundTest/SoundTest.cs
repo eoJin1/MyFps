@@ -1,6 +1,7 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
-namespace MyFps
+using UnityEngine.Audio;
+
+namespace MySample
 {
     /// <summary>
     /// 사운드 플레이 클래스
@@ -8,11 +9,16 @@ namespace MyFps
     public class SoundTest : MonoBehaviour
     {
         #region Variables
-        //재생할 사운드
+        //재생할 오디오(사운드) 소스
         public AudioClip clip;
 
+        [SerializeField] private float volume = 1f;
+        [SerializeField] private float pitch = 1f;
+        [SerializeField] private bool isLoop = false;
+        [SerializeField] private bool playOnAwake = false;
+
         //참조
-        public AudioSource audioSource;
+        private AudioSource audioSource;
         #endregion
 
         #region Unity Event Method
@@ -24,7 +30,8 @@ namespace MyFps
             {
                 audioSource = gameObject.AddComponent<AudioSource>();
             }
-            //플레이
+
+            //사운드 플레이
             SoundPlay();
         }
         #endregion
@@ -33,6 +40,12 @@ namespace MyFps
         private void SoundPlay()
         {
             audioSource.clip = clip;
+
+            audioSource.volume = volume;            
+            audioSource.pitch = pitch;
+            audioSource.loop = isLoop;
+            audioSource.playOnAwake = playOnAwake;
+
             audioSource.Play();
         }
         #endregion
