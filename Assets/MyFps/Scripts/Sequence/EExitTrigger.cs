@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections;
+
 namespace MyFps
 {
-
     public class EExitTrigger : MonoBehaviour
     {
         #region Variables
@@ -18,7 +18,6 @@ namespace MyFps
         public SceneFader fader;
         [SerializeField]
         private string loadToScene = "NextScene";
-
         #endregion
 
         #region Unity Event Method
@@ -30,7 +29,7 @@ namespace MyFps
 
         private void OnTriggerEnter(Collider other)
         {
-            SequencePlay();
+            StartCoroutine(SequencePlay());
 
             //충돌체 비활성화(또는 킬)
             collider.enabled = false;
@@ -38,22 +37,21 @@ namespace MyFps
         #endregion
 
         #region Custom Method
-        private void SequencePlay()
-        //IEnumerator SequencePlay()
+        IEnumerator SequencePlay()
         {
             //문열기
             door.Activate();
-            //배경음 끄기
+            //배경음 끄고
             bgm02.Stop();
-            //씬 종료시 구현 내용
-            //.......
 
-            //yield return new WaitForSeconds(1f);
+            //씬 종료시 구현 내용
+            //......
+
+            yield return new WaitForSeconds(1f);
 
             //fader.FadeTo(loadToScene);
             Debug.Log($"Goto {loadToScene}");
         }
-
         #endregion
     }
 }
