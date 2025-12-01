@@ -1,36 +1,43 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Events;
+using TMPro;
+
 namespace MyFps
 {
     /// <summary>
     /// 등록된 문의 열기, 닫기 구현
-    /// 인터랙티브액션으로 이벤트 구현, 인터랙티브 상속 받는다
+    /// 인터랙티브 액션으로 이벤트 구현, 인터랙티브 상속 받는다
     /// </summary>
     public class DoorSwitch : Interactive
     {
         #region Variables
-        [Header("Interactive Action")]
-        public Door door;       //문 닫기/열기 실행할 게임 오브젝트
+        public Door door;       //문닫기, 열기할 문 게임오브젝트
 
+        public Renderer renderer;           //스위치를 그리는 랜더러
+        public Material closeMaterial;      //닫을때 스위치 컬러
+        private Material originMaterial;    //열을때 스위치 컬러
 
-        public Renderer renderer;
-        public Material closeMaterial;  //닫을때 스위치 컬러
-        private Material originMaterial;    //열때 스위치 컬러
+        public TextMeshProUGUI sequenceText;
+        [SerializeField]
+        private PuzzleItem needKey = PuzzleItem.None;
         #endregion
 
         #region Unity Event Method
         private void OnEnable()
         {
-            
+            door.OnActivate += DoorOpen;
+            door.OnDeactivate += DoorClose;
         }
+
         private void OnDisable()
         {
-            
+            door.OnActivate -= DoorOpen;
+            door.OnDeactivate -= DoorClose;
         }
 
         protected void Start()
         {
+            //초기화
             originMaterial = renderer.material;
         }
         #endregion
@@ -43,14 +50,24 @@ namespace MyFps
 
         IEnumerator Toggle()
         {
-            //문 열고 닫기
-            if (door.IsActive)
+            //열쇠 체크
+            if (needKey == PuzzleItem.None || PlayerStats.Instance.HavePuzzleItem(needKey))
             {
-                DoorOpen();
+                //문 열고 닫기
+                if (door.IsActive)
+                {
+                    door.Deactivate();
+                }
+                else
+                {
+                    door.Activate();
+                }
             }
             else
             {
-                DoorClose();
+                sequenceText.text = "You need Key";
+                yield return new WaitForSeconds(2f);
+                sequenceText.text = "";
             }
 
             yield return new WaitForSeconds(1f);
@@ -61,18 +78,16 @@ namespace MyFps
 
         void DoorOpen()
         {
-            door.Deactivate();
-            action = "Open The Door";
-            renderer.material = originMaterial;
-        }
-
-        void DoorClose()
-        {
-            door.Activate();
             action = "Close The Door";
             renderer.material = closeMaterial;
         }
 
+        void DoorClose()
+        {
+            action = "Open The Door";
+            renderer.material = originMaterial;
+        }
         #endregion
+
     }
 }

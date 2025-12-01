@@ -2,7 +2,7 @@ using UnityEngine;
 namespace MyFps
 {
     /// <summary>
-    /// 아이템 줍기
+    /// 아이템 줍기, 리워드 아이템 줍기시 상속하는 부모 클래스
     /// </summary>
     public class PickupItem : Interactive
     {

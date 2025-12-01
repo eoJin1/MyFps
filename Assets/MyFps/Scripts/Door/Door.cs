@@ -12,7 +12,10 @@ namespace MyFps
         //참조
         protected Animator animator;
 
+        // true:문 열려 있는 상태, false : 문이 닫혀 있는 상태
+        [SerializeField]
         protected bool isActive;
+
         public UnityAction OnActivate;
         public UnityAction OnDeactivate;
 
@@ -27,7 +30,7 @@ namespace MyFps
         {
             get { return isActive; }
             set
-            { 
+            {
                 isActive = value;
                 animator.SetBool(IsOpen, value);
 
@@ -42,17 +45,32 @@ namespace MyFps
             //참조
             animator = GetComponent<Animator>();
         }
+
+        protected virtual void Start()
+        {
+            //문 상태 열림/닫힘 설정
+            if (isActive)
+            {
+                Activate();
+            }
+        }
         #endregion
 
         #region Custom Method
         public void Activate()
         {
             IsActive = true;
+
+            //활성화시 등록된 함수 호출
+            OnActivate?.Invoke();
         }
 
         public void Deactivate()
         {
             IsActive = false;
+
+            //비 활성화시 등록된 함수 호출
+            OnDeactivate?.Invoke();
         }
         #endregion
     }
