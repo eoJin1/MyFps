@@ -150,7 +150,7 @@ namespace MyFps
             //데스 킬 처리
             if (robotState == RobotState.R_Death)
             {
-                Destroy(gameObject, 4f);
+                Destroy(gameObject, 6f);
             }
         }
 
@@ -171,6 +171,10 @@ namespace MyFps
         private void Die()
         {
             isDeath = true;
+
+            // 콜라이더 비활성화
+            Collider col = GetComponent<Collider>();
+            if (col != null) col.enabled = false;
 
             //또는 필드에 아이템 떨구기
             if (rewardItemPrefab != null)
