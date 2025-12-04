@@ -9,7 +9,7 @@ namespace MyFps
         private void OnCollisionEnter(Collision collision)
         {
             //상대 속도가 1 이상이면
-            if(collision.relativeVelocity.magnitude > 1.0f)
+            if(collision.relativeVelocity.magnitude > 1f)
             {
                 AudioManager.Instance.Play("DoorBang");
             }

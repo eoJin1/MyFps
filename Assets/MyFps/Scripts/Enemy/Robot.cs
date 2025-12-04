@@ -55,13 +55,14 @@ namespace MyFps
         private float attackDamage = 5f;
 
         //리워드
+        /*
         [SerializeField]
         private int rewardGold = 0;
         [SerializeField]
         private float rewardExp = 0f;
+        */
         //private Item rewardItem;
         public GameObject rewardItemPrefab;
-
 
         //애니메이션 파라미터
         private const string EnemyState = "EnemyState";
@@ -71,7 +72,7 @@ namespace MyFps
         private void Awake()
         {
             //참조
-            //thePlayer = GameObject.Find("Robot").transform;
+            //thePlayer = GameObject.Find("Player").transform;
             thePlayer = FindFirstObjectByType<PlayerMove>().transform;
         }
 
@@ -97,7 +98,7 @@ namespace MyFps
                 //3초후에 걷기로 상태 전환
                 case RobotState.R_Idle:
                     countdown += Time.deltaTime;
-                    if(countdown >= idleTimer)
+                    if (countdown >= idleTimer)
                     {
                         //타이머 기능
                         SetState(RobotState.R_Walk);
@@ -134,7 +135,7 @@ namespace MyFps
                     }*/
 
                     //플레이어와의 거리가 attackRange(2)가 넘어가면 걷기 상태로 전환
-                    if(distance > attackRange)
+                    if (distance > attackRange)
                     {
                         SetState(RobotState.R_Walk);
                     }
@@ -164,7 +165,7 @@ namespace MyFps
             animator.SetInteger(EnemyState, (int)robotState);
 
             //데스 킬 처리
-            if(robotState == RobotState.R_Death)
+            if (robotState == RobotState.R_Death)
             {
                 Destroy(gameObject, 6f);
             }
@@ -191,12 +192,12 @@ namespace MyFps
             //리워드 처리
             //AddGold(rewardGold);
             //AddExp(rewardExp);
-            //AddInventory(rewardItemPrefab);
-
-            //또는 필드에 아이템 떨구기
-            if(rewardItemPrefab != null)
+            //AddInventory(rewardItem);
+            Debug.Log("보상을 지급하였습니다");
+            //필드에 아이템 떨구기
+            if (rewardItemPrefab != null)
             {
-                Instantiate(rewardItemPrefab, this.transform.position + new Vector3(0.5f, 0.5f, 0.5f), Quaternion.identity);
+                Instantiate(rewardItemPrefab, this.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
             }
 
             //Death 상태 변경
